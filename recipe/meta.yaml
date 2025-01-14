@@ -7,11 +7,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/LbScriptsLegacy-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/LbScriptsLegacy-{{ version }}.tar.gz
   sha256: 15b5594245407a8fde4a96ed2fece4809e987ad77b4c9f6c4e0648909841d801
 
 build:
-  number: 0
+  number: 1
   noarch: python
   entry_points:
     - getNightlyRefs=LbScriptsLegacy:getNightlyRefs
@@ -22,12 +22,12 @@ requirements:
   host:
     - nose >=1.0
     - pip
-    - python
+    - python {{ python_min }}
     - setuptools_scm
   run:
     - lbdevtools
     - lbnightlytools
-    - python
+    - python >={{ python_min }}
 
 test:
   imports:
@@ -38,6 +38,7 @@ test:
     - Lbglimpse --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://gitlab.cern.ch/lhcb-core/LbScriptsLegacy
